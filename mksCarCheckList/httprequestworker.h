@@ -8,7 +8,7 @@
 #include <QNetworkReply>
 
 
-enum HttpRequestVarLayout {NOT_SET, ADDRESS, URL_ENCODED, MULTIPART};
+enum HttpRequestVarLayout {NOT_SET, ADDRESS, URL_ENCODED, MULTIPART, JSON};
 
 
 class HttpRequestInputFileElement {
@@ -30,11 +30,13 @@ public:
     HttpRequestVarLayout var_layout;
     QMap<QString, QString> vars;
     QList<HttpRequestInputFileElement> files;
+    QString plainData;
 
     HttpRequestInput();
     HttpRequestInput(QString v_url_str, QString v_http_method);
     void initialize();
     void add_var(QString key, QString value);
+    void add_data(QString data);
     void add_file(QString variable_name, QString local_filename, QString request_filename, QString mime_type);
 
 };

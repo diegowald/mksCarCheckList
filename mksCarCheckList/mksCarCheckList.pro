@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui network
+CONFIG += c++11
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,17 +18,44 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     httprequestworker.cpp \
     flowlayout.cpp \
-    wdgtvehicle.cpp
+    wdgtvehicle.cpp \
+    mongoclientapi.cpp \
+    entities/user.cpp \
+    entities/vehicle.cpp \
+    entities/jsonable.cpp \
+    entities/vehicleevent.cpp \
+    globalcontainer.cpp \
+    dlguser.cpp \
+    wdgtuser.cpp \
+    wdgcontroller.cpp \
+    dlgvehicleeditor.cpp
 
 HEADERS  += mainwindow.h \
     httprequestworker.h\
     flowlayout.h \
-    wdgtvehicle.h
+    wdgtvehicle.h \
+    mongoclientapi.h \
+    entities/user.h \
+    entities/vehicle.h \
+    entities/jsonable.h \
+    entities/vehicleevent.h \
+    globalcontainer.h \
+    dlguser.h \
+    wdgtuser.h \
+    wdgcontroller.h \
+    dlgvehicleeditor.h
 
 
 FORMS    += mainwindow.ui \
-    wdgtvehicle.ui
+    wdgtvehicle.ui \
+    dlguser.ui \
+    wdgtuser.ui \
+    wdgcontroller.ui \
+    dlgvehicleeditor.ui
 
 CONFIG += mobility
 MOBILITY =
+
+RESOURCES += \
+    resources.qrc
 

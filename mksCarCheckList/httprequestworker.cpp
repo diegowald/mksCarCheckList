@@ -4,7 +4,6 @@
 #include <QFileInfo>
 #include <QBuffer>
 
-
 HttpRequestInput::HttpRequestInput() {
     initialize();
 }
@@ -23,6 +22,11 @@ void HttpRequestInput::initialize() {
 
 void HttpRequestInput::add_var(QString key, QString value) {
     vars[key] = value;
+}
+
+void HttpRequestInput::add_data(QString data)
+{
+    plainData = data;
 }
 
 void HttpRequestInput::add_file(QString variable_name, QString local_filename, QString request_filename, QString mime_type) {
@@ -118,8 +122,11 @@ void HttpRequestWorker::execute(HttpRequestInput *input) {
 
     if (input->var_layout == ADDRESS || input->var_layout == URL_ENCODED) {
         // variable layout is ADDRESS or URL_ENCODED
-
-        if (input->vars.count() > 0) {
+        if (input->plainData.length() > 0)
+        {
+            request_content.append(input->plainData);
+        }
+        else if (input->vars.count() > 0) {
             bool first = true;
             foreach (QString key, input->vars.keys()) {
                 if (!first) {
@@ -138,12 +145,12 @@ void HttpRequestWorker::execute(HttpRequestInput *input) {
             }
         }
     }
-    else {
+    else if (input->var_layout == MULTIPART) {
         // variable layout is MULTIPART
 
         boundary = "__-----------------------"
-            + QString::number(QDateTime::currentDateTime().toTime_t())
-            + QString::number(qrand());
+                + QString::number(QDateTime::currentDateTime().toTime_t())
+                + QString::number(qrand());
         QString boundary_delimiter = "--";
         QString new_line = "\r\n";
 
@@ -175,10 +182,10 @@ void HttpRequestWorker::execute(HttpRequestInput *input) {
 
             // ensure necessary variables are available
             if (
-                file_info->local_filename == NULL || file_info->local_filename.isEmpty()
-                || file_info->variable_name == NULL || file_info->variable_name.isEmpty()
-                || !fi.exists() || !fi.isFile() || !fi.isReadable()
-            ) {
+                    file_info->local_filename == NULL || file_info->local_filename.isEmpty()
+                    || file_info->variable_name == NULL || file_info->variable_name.isEmpty()
+                    || !fi.exists() || !fi.isFile() || !fi.isReadable()
+                    ) {
                 // silent abort for the current file
                 continue;
             }
@@ -204,9 +211,9 @@ void HttpRequestWorker::execute(HttpRequestInput *input) {
 
             // add header
             request_content.append(QString("Content-Disposition: form-data; %1; %2").arg(
-                http_attribute_encode("name", file_info->variable_name),
-                http_attribute_encode("filename", file_info->request_filename)
-            ));
+                                       http_attribute_encode("name", file_info->variable_name),
+                                       http_attribute_encode("filename", file_info->request_filename)
+                                       ));
             request_content.append(new_line);
 
             if (file_info->mime_type != NULL && !file_info->mime_type.isEmpty()) {
@@ -233,18 +240,29 @@ void HttpRequestWorker::execute(HttpRequestInput *input) {
         request_content.append(boundary);
         request_content.append(boundary_delimiter);
     }
-
+    else if (input->var_layout == JSON)
+    {
+        if (input->plainData.length() > 0)
+        {
+            request_content.append(input->plainData);
+        }
+    }
 
     // prepare connection
 
     QNetworkRequest request = QNetworkRequest(QUrl(input->url_str));
     request.setRawHeader("User-Agent", "Agent name goes here");
 
-    if (input->var_layout == URL_ENCODED) {
+    if (input->var_layout == URL_ENCODED)
+    {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     }
     else if (input->var_layout == MULTIPART) {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "multipart/form-data; boundary=" + boundary);
+    }
+    else if (input->var_layout == JSON)
+    {
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     }
 
     if (input->http_method == "GET") {
