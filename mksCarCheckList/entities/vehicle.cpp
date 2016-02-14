@@ -1,6 +1,8 @@
 #include "vehicle.h"
 #include <QJsonArray>
-
+#include "factory.h"
+#include "analyzer/countkmsanalyzer.h"
+#include "analyzer/oilchangeanalyzer.h"
 
 Vehicle::Vehicle(UserPtr owner, QObject *parent) : JsonAble(JsonAbleType::Vehicle, "vehicles", "1", parent)
 {
@@ -12,7 +14,7 @@ Vehicle::Vehicle(UserPtr owner, QObject *parent) : JsonAble(JsonAbleType::Vehicl
     _owner = owner;
 }
 
-Vehicle::Vehicle(QJsonObject &json, QObject *parent) : JsonAble(JsonAbleType::Vehicle, "vehicles", "1", parent)
+Vehicle::Vehicle(QJsonObject &json, QObject *parent) : JsonAble(json, JsonAbleType::Vehicle, "vehicles", "1", parent)
 {
     _name = json["name"].toString();
     _plate = json["plate"].toString();
@@ -30,6 +32,15 @@ Vehicle::Vehicle(QJsonObject &json, QObject *parent) : JsonAble(JsonAbleType::Ve
         QJsonObject obj = value.toObject();
         UserPtr user = UserPtr::create(obj);
         _others.append(user);
+    }
+
+    QJsonArray arrayEvts = json["vehicleEvents"].toArray();
+    foreach (QJsonValue value, arrayEvts)
+    {
+        QJsonObject obj = value.toObject();
+        VehicleEventPtr ve = qSharedPointerDynamicCast<VehicleEvent>(Factory::create(obj));
+        if (!ve.isNull())
+            _vehicleEvents[ve->moment()] = ve;
     }
 }
 
@@ -99,8 +110,43 @@ void Vehicle::buildJson(QJsonObject &jsonObj)
         array.append(user->toJsonID());
     }
     jsonObj["others"] = array;
+
+    QJsonArray arrayEvts;
+    foreach (VehicleEventPtr ve, _vehicleEvents.values())
+    {
+        arrayEvts.append(ve->toJson(true));
+    }
+    jsonObj["vehicleEvents"] = arrayEvts;
 }
 
 void Vehicle::buildJsonID(QJsonObject &jsonObj)
 {
+}
+
+int Vehicle::currentKms()
+{
+    CountKmsAnalyzer counter;
+    counter.process(0, _vehicleEvents.values());
+    return counter.result().toInt();
+}
+
+int Vehicle::lastOilChange()
+{
+    OilChangeAnalyzer analyzer;
+    analyzer.process(currentKms(), _vehicleEvents.values());
+    return analyzer.lastOilChange();
+}
+
+QDateTime Vehicle::lastOilChangeDate()
+{
+    OilChangeAnalyzer analyzer;
+    analyzer.process(currentKms(), _vehicleEvents.values());
+    return analyzer.lastOilChangeDate();
+}
+
+int Vehicle::nextOilChange()
+{
+    OilChangeAnalyzer analyzer;
+    analyzer.process(currentKms(), _vehicleEvents.values());
+    return analyzer.nextOilChange();
 }

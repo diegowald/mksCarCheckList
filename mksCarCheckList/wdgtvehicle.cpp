@@ -26,6 +26,14 @@ void WdgtVehicle::refreshUI()
     ui->lblNombre->setText(_vehicle->name());
     ui->lblPlate->setText(_vehicle->plate());
     ui->lblYear->setText(QString::number(_vehicle->year()));
+
+    QString s = "%1 km";
+    ui->lblCurrentKms->setText(s.arg(_vehicle->currentKms()));
+    s = "%1 km\n(%2)";
+    ui->lblLastOilChange->setText(s.arg(_vehicle->lastOilChange())
+                                  .arg(_vehicle->lastOilChangeDate().toString()));
+    s = "%1 km";
+    ui->lblNextOilChange->setText(s.arg(_vehicle->nextOilChange()));
 }
 
 void WdgtVehicle::on_toolButton_clicked()
@@ -43,4 +51,9 @@ void WdgtVehicle::on_toolButton_clicked()
         }
     }
     refreshUI();
+}
+
+void WdgtVehicle::on_btnUpdateKms_clicked()
+{
+
 }

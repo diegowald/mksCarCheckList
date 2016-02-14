@@ -1,5 +1,61 @@
 <RCC>
     <qresource prefix="/img">
         <file alias="spinner">spinner.gif</file>
+        <file>wheels10.png</file>
+        <file>wheel6.png</file>
+        <file alias="kms">vehicle92.png</file>
+        <file>vehicle18.png</file>
+        <file>transport1110.png</file>
+        <file>transport1104.png</file>
+        <file>transport948.png</file>
+        <file>transport179.png</file>
+        <file>transport167.png</file>
+        <file>transport154.png</file>
+        <file>tool1102.png</file>
+        <file>tool1095.png</file>
+        <file>tool1091.png</file>
+        <file>tool1082.png</file>
+        <file>sedan4.png</file>
+        <file>sedan3.png</file>
+        <file>oil10.png</file>
+        <file>motor8.png</file>
+        <file alias="oil">lamp37.png</file>
+        <file>gas-station.png</file>
+        <file>fuel14.png</file>
+        <file>fuel1.png</file>
+        <file>disc24.png</file>
+        <file>delivery13.png</file>
+        <file>craner.png</file>
+        <file>checkered12.png</file>
+        <file>car225.png</file>
+        <file>car189.png</file>
+        <file>car186.png</file>
+        <file>car178.png</file>
+        <file>car106.png</file>
+        <file>car80.png</file>
+        <file>car72.png</file>
+        <file>car66.png</file>
+        <file>car51.png</file>
+        <file>car15.png</file>
+        <file>ic_notifications_none_48px.svg</file>
+        <file>ic_notifications_none_24px.svg</file>
+        <file>ic_notifications_48px.svg</file>
+        <file>ic_notifications_24px.svg</file>
+        <file>ic_group_add_48px.svg</file>
+        <file>ic_group_add_24px.svg</file>
+        <file>ic_group_48px.svg</file>
+        <file>ic_group_24px.svg</file>
+        <file>ic_sms_48px.svg</file>
+        <file>ic_sms_24px.svg</file>
+        <file>ic_play_install_48px.svg</file>
+        <file>ic_play_install_24px.svg</file>
+        <file>ic_drive_eta_48px.svg</file>
+        <file>ic_drive_eta_24px.svg</file>
+        <file>ic_local_phone_48px.svg</file>
+        <file>ic_local_phone_24px.svg</file>
+        <file>ic_local_offer_48px.svg</file>
+        <file>ic_local_offer_24px.svg</file>
+        <file>ic_local_gas_station_48px.svg</file>
+        <file>ic_local_gas_station_24px.svg</file>
     </qresource>
 </RCC>

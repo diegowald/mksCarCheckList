@@ -28,7 +28,12 @@ SOURCES += main.cpp\
     dlguser.cpp \
     wdgtuser.cpp \
     wdgcontroller.cpp \
-    dlgvehicleeditor.cpp
+    dlgvehicleeditor.cpp \
+    factory.cpp \
+    entities/VehicleEvents/countkms.cpp \
+    analyzer/vehicleeventanalyzer.cpp \
+    analyzer/countkmsanalyzer.cpp \
+    analyzer/oilchangeanalyzer.cpp
 
 HEADERS  += mainwindow.h \
     httprequestworker.h\
@@ -43,7 +48,12 @@ HEADERS  += mainwindow.h \
     dlguser.h \
     wdgtuser.h \
     wdgcontroller.h \
-    dlgvehicleeditor.h
+    dlgvehicleeditor.h \
+    factory.h \
+    entities/VehicleEvents/countkms.h \
+    analyzer/vehicleeventanalyzer.h \
+    analyzer/countkmsanalyzer.h \
+    analyzer/oilchangeanalyzer.h
 
 
 FORMS    += mainwindow.ui \

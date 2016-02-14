@@ -21,6 +21,8 @@ public:
 private slots:
     void on_toolButton_clicked();
 
+    void on_btnUpdateKms_clicked();
+
 private:
     void refreshUI();
 private:

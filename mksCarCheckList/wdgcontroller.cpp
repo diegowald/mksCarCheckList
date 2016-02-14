@@ -33,9 +33,11 @@ void WdgController::on_toolButton_clicked()
 {
     VehiclePtr vehicle = VehiclePtr::create(_container->owner());
     DlgVehicleEditor dlg(vehicle);
-    dlg.exec();
-    startSpinner();
-    _api->add(vehicle);
+    if (dlg.exec() == QDialog::Accepted)
+    {
+        startSpinner();
+        _api->add(vehicle);
+    }
 }
 
 void WdgController::startSpinner()

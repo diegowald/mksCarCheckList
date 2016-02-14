@@ -3,6 +3,8 @@
 
 #include "entities/jsonable.h"
 #include "entities/user.h"
+#include "entities/vehicleevent.h"
+#include <QMap>
 
 class Vehicle : public JsonAble
 {
@@ -23,6 +25,13 @@ public:
     void setModel(const QString &value);
     void setYear(const int value);
 
+    // Calculable values
+    int currentKms();
+    int lastOilChange();
+    QDateTime lastOilChangeDate();
+    int nextOilChange();
+
+
     // JsonAble interface
 protected:
     virtual void buildJson(QJsonObject &jsonObj);
@@ -41,6 +50,8 @@ private:
     QString _brand;
     QString _model;
     int _year;
+
+    QMap<QDateTime, VehicleEventPtr> _vehicleEvents;
 };
 
 typedef QSharedPointer<Vehicle> VehiclePtr;

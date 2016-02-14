@@ -20,10 +20,12 @@ MainWindow::MainWindow(QWidget *parent) :
     FlowLayout *fl = new FlowLayout(ui->centralWidget);
 
     WdgController *controller = new WdgController(_container, ui->centralWidget);
+    controller->setStyleSheet("background-color: rgb(219, 246, 242); gridline-color: rgb(225, 9, 187);");
     connect(controller, &WdgController::vehicleAdded, this, &MainWindow::on_vehicleAdded);
     fl->addWidget(controller);
 
     WdgtUser *wdUser = new WdgtUser(_container, ui->centralWidget);
+    wdUser->setStyleSheet("background-color: rgb(219, 246, 242); gridline-color: rgb(225, 9, 187);");
     fl->addWidget(wdUser);
 
     foreach (JsonAblePtr entity, _container->vehicles())
@@ -54,6 +56,7 @@ MainWindow::~MainWindow()
     _container->finalize();
     delete ui;
 }
+
 
 void MainWindow::on_added(QJsonDocument &json, MongoClientAPI::Status status)
 {
