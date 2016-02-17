@@ -33,7 +33,11 @@ SOURCES += main.cpp\
     entities/VehicleEvents/countkms.cpp \
     analyzer/vehicleeventanalyzer.cpp \
     analyzer/countkmsanalyzer.cpp \
-    analyzer/oilchangeanalyzer.cpp
+    analyzer/oilchangeanalyzer.cpp \
+    dlgupdatekms.cpp \
+    dlgoildetails.cpp \
+    entities/VehicleEvents/oilchange.cpp \
+    dlgnewoilchange.cpp
 
 HEADERS  += mainwindow.h \
     httprequestworker.h\
@@ -53,7 +57,11 @@ HEADERS  += mainwindow.h \
     entities/VehicleEvents/countkms.h \
     analyzer/vehicleeventanalyzer.h \
     analyzer/countkmsanalyzer.h \
-    analyzer/oilchangeanalyzer.h
+    analyzer/oilchangeanalyzer.h \
+    dlgupdatekms.h \
+    dlgoildetails.h \
+    entities/VehicleEvents/oilchange.h \
+    dlgnewoilchange.h
 
 
 FORMS    += mainwindow.ui \
@@ -61,7 +69,10 @@ FORMS    += mainwindow.ui \
     dlguser.ui \
     wdgtuser.ui \
     wdgcontroller.ui \
-    dlgvehicleeditor.ui
+    dlgvehicleeditor.ui \
+    dlgupdatekms.ui \
+    dlgoildetails.ui \
+    dlgnewoilchange.ui
 
 CONFIG += mobility
 MOBILITY =

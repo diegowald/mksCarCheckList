@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _api = MongoClientAPIPtr::create();
     _container = GlobalContainerPtr::create();
     _container->initialize("./settings.json");
-    FlowLayout *fl = new FlowLayout(ui->centralWidget);
+    FlowLayout *fl = new FlowLayout(ui->scrollAreaWidgetContents);
 
     WdgController *controller = new WdgController(_container, ui->centralWidget);
     controller->setStyleSheet("background-color: rgb(219, 246, 242); gridline-color: rgb(225, 9, 187);");
@@ -37,7 +37,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //fl->addWidget(new WdgtVehicle(ui->centralWidget));
 
-    ui->centralWidget->setLayout(fl);
+    //ui->centralWidget->setLayout(fl);
+    ui->scrollAreaWidgetContents->setLayout(fl);
 
     connect(_api.data(), &MongoClientAPI::added, this, &MainWindow::on_added);
     connect(_api.data(), &MongoClientAPI::updated, this, &MainWindow::on_updated);
@@ -90,7 +91,8 @@ void MainWindow::stopSpinner()
 
 void MainWindow::refreshUI()
 {
-    FlowLayout *fl = dynamic_cast<FlowLayout*>(ui->centralWidget->layout());
+    //FlowLayout *fl = dynamic_cast<FlowLayout*>(ui->centralWidget->layout());
+    FlowLayout *fl = dynamic_cast<FlowLayout*>(ui->scrollAreaWidgetContents->layout());
 
     foreach (JsonAblePtr entity, _container->vehicles())
     {

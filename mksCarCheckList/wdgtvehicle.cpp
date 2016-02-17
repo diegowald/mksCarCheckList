@@ -1,6 +1,8 @@
 #include "wdgtvehicle.h"
 #include "ui_wdgtvehicle.h"
 #include "dlgvehicleeditor.h"
+#include "dlgupdatekms.h"
+#include "dlgoildetails.h"
 
 WdgtVehicle::WdgtVehicle(GlobalContainerPtr container,
                          VehiclePtr vehicle, QWidget *parent) :
@@ -55,5 +57,34 @@ void WdgtVehicle::on_toolButton_clicked()
 
 void WdgtVehicle::on_btnUpdateKms_clicked()
 {
+    DlgUpdateKms dlg(_vehicle);
+    if (dlg.exec() == QDialog::Accepted)
+    {
+        if (_vehicle->isNew())
+        {
+            _api->add(_vehicle);
+        }
+        else
+        {
+            _api->update(_vehicle);
+        }
+    }
+    refreshUI();
+}
 
+void WdgtVehicle::on_btnOilDetails_clicked()
+{
+    DlgOilDetails dlg(_vehicle);
+    if (dlg.exec() == QDialog::Accepted)
+    {
+        if (_vehicle->isNew())
+        {
+            _api->add(_vehicle);
+        }
+        else
+        {
+            _api->update(_vehicle);
+        }
+    }
+    refreshUI();
 }

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DlgVehicleEditor</class>
- <widget class="QDialog" name="DlgVehicleEditor">
+ <class>DlgOilDetails</class>
+ <widget class="QDialog" name="DlgOilDetails">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>260</width>
-    <height>209</height>
+    <width>295</width>
+    <height>203</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Vehicule Information</string>
+   <string>Oil Details</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
-    <normaloff>:/img/car189.png</normaloff>:/img/car189.png</iconset>
+    <normaloff>:/img/fuel1.png</normaloff>:/img/fuel1.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -23,22 +23,30 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Name</string>
+        <string>Date</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="txtName"/>
+      <widget class="QLabel" name="lblDate">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Plate</string>
+        <string>Kms</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="txtPlate"/>
+      <widget class="QLabel" name="lblKms">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
@@ -48,29 +56,65 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="txtBrand"/>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="lblOilBrand">
        <property name="text">
-        <string>Model</string>
+        <string>TextLabel</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="txtModel"/>
-     </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Year</string>
+        <string>Quantity</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QSpinBox" name="spinYear">
-       <property name="minimum">
-        <number>1950</number>
+      <widget class="QLabel" name="lblQuantity">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Next change</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLabel" name="lblNextChange">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Date for next change</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLabel" name="lblDateNextChange">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Where</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="lblWhere">
+       <property name="text">
+        <string>TextLabel</string>
        </property>
       </widget>
      </item>
@@ -79,9 +123,9 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="lblSpinner">
+      <widget class="QPushButton" name="btnOilChange">
        <property name="text">
-        <string>TextLabel</string>
+        <string>New Change</string>
        </property>
       </widget>
      </item>
@@ -106,7 +150,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>DlgVehicleEditor</receiver>
+   <receiver>DlgOilDetails</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -122,7 +166,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>DlgVehicleEditor</receiver>
+   <receiver>DlgOilDetails</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

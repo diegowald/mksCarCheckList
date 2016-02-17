@@ -42,3 +42,13 @@ QVariant OilChangeAnalyzer::result()
 {
     return _lastChangeEvent->kms();
 }
+
+VehicleEventPtr OilChangeAnalyzer::lastChangeEvent()
+{
+    return _lastChangeEvent;
+}
+
+QDateTime OilChangeAnalyzer::nextOilChangeDate()
+{
+    return QDateTime::currentDateTime();
+}

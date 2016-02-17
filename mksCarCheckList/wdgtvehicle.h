@@ -23,6 +23,8 @@ private slots:
 
     void on_btnUpdateKms_clicked();
 
+    void on_btnOilDetails_clicked();
+
 private:
     void refreshUI();
 private:

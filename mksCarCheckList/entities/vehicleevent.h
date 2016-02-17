@@ -24,7 +24,7 @@ public:
     QString description() const;
     VehicleEventType evtType() const;
 
-    void setMoment(QDateTime &value);
+    void setMoment(const QDateTime &value);
     void setKms(int value);
     void setName(const QString &value);
     void setDescription(const QString &value);

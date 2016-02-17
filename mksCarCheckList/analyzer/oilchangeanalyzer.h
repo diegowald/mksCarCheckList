@@ -12,7 +12,8 @@ public:
     int lastOilChange();
     QDateTime lastOilChangeDate();
     int nextOilChange();
-
+    VehicleEventPtr lastChangeEvent();
+    QDateTime nextOilChangeDate();
 signals:
 
 public slots:

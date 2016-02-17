@@ -25,11 +25,16 @@ public:
     void setModel(const QString &value);
     void setYear(const int value);
 
+    // VehicleEvents;
+    void addVehicleEvent(VehicleEventPtr evt);
+    VehicleEventPtr lastOilChangeEvent();
+
     // Calculable values
     int currentKms();
     int lastOilChange();
     QDateTime lastOilChangeDate();
     int nextOilChange();
+    QDateTime nextOilChangeDate();
 
 
     // JsonAble interface

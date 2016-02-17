@@ -58,7 +58,7 @@ VehicleEventType VehicleEvent::evtType() const
     return _evtType;
 }
 
-void VehicleEvent::setMoment(QDateTime &value)
+void VehicleEvent::setMoment(const QDateTime &value)
 {
     _moment = value;
 }

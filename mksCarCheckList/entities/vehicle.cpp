@@ -150,3 +150,23 @@ int Vehicle::nextOilChange()
     analyzer.process(currentKms(), _vehicleEvents.values());
     return analyzer.nextOilChange();
 }
+
+QDateTime Vehicle::nextOilChangeDate()
+{
+    OilChangeAnalyzer analyzer;
+    analyzer.process(currentKms(), _vehicleEvents.values());
+    return analyzer.nextOilChangeDate();
+}
+
+
+void Vehicle::addVehicleEvent(VehicleEventPtr evt)
+{
+    _vehicleEvents[evt->moment()] = evt;
+}
+
+VehicleEventPtr Vehicle::lastOilChangeEvent()
+{
+    OilChangeAnalyzer analyzer;
+    analyzer.process(currentKms(), _vehicleEvents.values());
+    return analyzer.lastChangeEvent();
+}
