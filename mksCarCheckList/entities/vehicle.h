@@ -25,6 +25,22 @@ public:
     void setModel(const QString &value);
     void setYear(const int value);
 
+    bool handleGasCharge() const;
+    bool handleOilChange() const;
+    bool handleSparkChange() const;
+    bool handleBendChange() const;
+    bool handleGasFilter() const;
+    bool handleWheelAlign() const;
+    bool handleWheelPressure() const;
+
+    void setHandleGasCharge(bool value);
+    void setHandleOilChange(bool value);
+    void setHandleSparkChange(bool value);
+    void setHandleBendChange(bool value);
+    void setHandleGasFilter(bool value);
+    void setHandleWheelAlign(bool value);
+    void setHandleWheelPressure(bool value);
+
     // VehicleEvents;
     void addVehicleEvent(VehicleEventPtr evt);
     VehicleEventPtr lastOilChangeEvent();
@@ -55,6 +71,14 @@ private:
     QString _brand;
     QString _model;
     int _year;
+
+    bool _handleGasCharge;
+    bool _handleOilChange;
+    bool _handleSparkChange;
+    bool _handleBendChange;
+    bool _handleGasFilter;
+    bool _handleWheelAlign;
+    bool _handleWheelPressure;
 
     QMap<QDateTime, VehicleEventPtr> _vehicleEvents;
 };

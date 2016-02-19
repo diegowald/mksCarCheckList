@@ -3,6 +3,9 @@
 #include "dlgvehicleeditor.h"
 #include "dlgupdatekms.h"
 #include "dlgoildetails.h"
+#include "qtaplistwidget.h"
+#include "entities/vehicleevent.h"
+#include "vehicleeventlistwidget.h"
 
 WdgtVehicle::WdgtVehicle(GlobalContainerPtr container,
                          VehiclePtr vehicle, QWidget *parent) :
@@ -13,6 +16,23 @@ WdgtVehicle::WdgtVehicle(GlobalContainerPtr container,
     _vehicle = vehicle;
     _api = MongoClientAPIPtr::create();
     _container = container;
+
+
+    //VehicleEventListWidget *item = new VehicleEventListWidget()
+    //if (vehicle->handleGasCharge())
+    if (vehicle->handleOilChange())
+    {
+        _oilChangeCtrller = new OilChangeController(_vehicle, this);
+        VehicleEventListWidget *item = new VehicleEventListWidget(_oilChangeCtrller);
+        ui->listWidget->insertItem(0, item);
+    }
+
+/*    QListWidgetItem *item = new QListWidgetItem("hola");
+    item->setData(Qt::UserRole, QVariant(static_cast<int>(VehicleEventType::BendChange)));
+    ui->listWidget->insertItem(0, "Hola\nMundo");
+    ui->listWidget->insertItem(1, "Hola\nMundo 2");
+    ui->listWidget->insertItem(2, item);*/
+
     refreshUI();
 }
 
@@ -21,6 +41,7 @@ WdgtVehicle::~WdgtVehicle()
     delete ui;
 }
 
+
 void WdgtVehicle::refreshUI()
 {
     ui->lblBrand->setText(_vehicle->brand());
@@ -28,14 +49,7 @@ void WdgtVehicle::refreshUI()
     ui->lblNombre->setText(_vehicle->name());
     ui->lblPlate->setText(_vehicle->plate());
     ui->lblYear->setText(QString::number(_vehicle->year()));
-
-    QString s = "%1 km";
-    ui->lblCurrentKms->setText(s.arg(_vehicle->currentKms()));
-    s = "%1 km\n(%2)";
-    ui->lblLastOilChange->setText(s.arg(_vehicle->lastOilChange())
-                                  .arg(_vehicle->lastOilChangeDate().toString()));
-    s = "%1 km";
-    ui->lblNextOilChange->setText(s.arg(_vehicle->nextOilChange()));
+    ui->listWidget->update();
 }
 
 void WdgtVehicle::on_toolButton_clicked()
@@ -88,3 +102,4 @@ void WdgtVehicle::on_btnOilDetails_clicked()
     }
     refreshUI();
 }
+

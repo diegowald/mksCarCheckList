@@ -12,6 +12,14 @@ Vehicle::Vehicle(UserPtr owner, QObject *parent) : JsonAble(JsonAbleType::Vehicl
     _model = "";
     _year = -1;
     _owner = owner;
+
+    _handleGasCharge = true;
+    _handleOilChange = true;
+    _handleSparkChange = true;
+    _handleBendChange = true;
+    _handleGasFilter = true;
+    _handleWheelAlign = true;
+    _handleWheelPressure = true;
 }
 
 Vehicle::Vehicle(QJsonObject &json, QObject *parent) : JsonAble(json, JsonAbleType::Vehicle, "vehicles", "1", parent)
@@ -42,6 +50,14 @@ Vehicle::Vehicle(QJsonObject &json, QObject *parent) : JsonAble(json, JsonAbleTy
         if (!ve.isNull())
             _vehicleEvents[ve->moment()] = ve;
     }
+
+    _handleGasCharge = json["handleGasCharge"].toBool();
+    _handleOilChange = json["handleOilChange"].toBool();
+    _handleSparkChange = json["handleSparkChange"].toBool();
+    _handleBendChange = json["handleBendChange"].toBool();
+    _handleGasFilter = json["handleGasFilter"].toBool();
+    _handleWheelAlign = json["handleWheelAlign"].toBool();
+    _handleWheelPressure = json["handleWheelPressure"].toBool();
 }
 
 QString Vehicle::name() const
@@ -117,6 +133,14 @@ void Vehicle::buildJson(QJsonObject &jsonObj)
         arrayEvts.append(ve->toJson(true));
     }
     jsonObj["vehicleEvents"] = arrayEvts;
+
+    jsonObj["handleGasCharge"] = _handleGasCharge;
+    jsonObj["handleOilChange"] = _handleOilChange;
+    jsonObj["handleSparkChange"] = _handleSparkChange;
+    jsonObj["handleBendChange"] = _handleBendChange;
+    jsonObj["handleGasFilter"] = _handleGasFilter;
+    jsonObj["handleWheelAlign"] = _handleWheelAlign;
+    jsonObj["handleWheelPressure"] = _handleWheelPressure;
 }
 
 void Vehicle::buildJsonID(QJsonObject &jsonObj)
@@ -169,4 +193,75 @@ VehicleEventPtr Vehicle::lastOilChangeEvent()
     OilChangeAnalyzer analyzer;
     analyzer.process(currentKms(), _vehicleEvents.values());
     return analyzer.lastChangeEvent();
+}
+
+
+bool Vehicle::handleGasCharge() const
+{
+    return _handleGasCharge;
+}
+
+bool Vehicle::handleOilChange() const
+{
+    return _handleOilChange;
+}
+
+bool Vehicle::handleSparkChange() const
+{
+    return _handleSparkChange;
+}
+
+bool Vehicle::handleBendChange() const
+{
+    return _handleBendChange;
+}
+
+bool Vehicle::handleGasFilter() const
+{
+    return _handleGasFilter;
+}
+
+bool Vehicle::handleWheelAlign() const
+{
+    return _handleWheelAlign;
+}
+
+bool Vehicle::handleWheelPressure() const
+{
+    return _handleWheelPressure;
+}
+
+void Vehicle::setHandleGasCharge(bool value)
+{
+    _handleGasCharge = value;
+}
+
+void Vehicle::setHandleOilChange(bool value)
+{
+    _handleOilChange = value;
+}
+
+void Vehicle::setHandleSparkChange(bool value)
+{
+    _handleSparkChange = value;
+}
+
+void Vehicle::setHandleBendChange(bool value)
+{
+    _handleBendChange = value;
+}
+
+void Vehicle::setHandleGasFilter(bool value)
+{
+    _handleGasFilter = value;
+}
+
+void Vehicle::setHandleWheelAlign(bool value)
+{
+    _handleWheelAlign = value;
+}
+
+void Vehicle::setHandleWheelPressure(bool value)
+{
+    _handleWheelPressure = value;
 }

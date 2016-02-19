@@ -9,6 +9,7 @@
 #include "wdgtuser.h"
 #include "wdgcontroller.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)

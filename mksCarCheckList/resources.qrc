@@ -2,7 +2,7 @@
     <qresource prefix="/img">
         <file alias="spinner">spinner.gif</file>
         <file>wheels10.png</file>
-        <file>wheel6.png</file>
+        <file alias="wheelAlign">wheel6.png</file>
         <file alias="kms">vehicle92.png</file>
         <file>vehicle18.png</file>
         <file>transport1110.png</file>
@@ -11,18 +11,18 @@
         <file>transport179.png</file>
         <file>transport167.png</file>
         <file>transport154.png</file>
-        <file>tool1102.png</file>
+        <file alias="gasFilter">tool1102.png</file>
         <file>tool1095.png</file>
         <file>tool1091.png</file>
-        <file>tool1082.png</file>
+        <file alias="spark">tool1082.png</file>
         <file>sedan4.png</file>
         <file>sedan3.png</file>
         <file>oil10.png</file>
         <file>motor8.png</file>
         <file alias="oil">lamp37.png</file>
         <file>gas-station.png</file>
-        <file>fuel14.png</file>
-        <file>fuel1.png</file>
+        <file alias="fuel">fuel14.png</file>
+        <file alias="oil">fuel1.png</file>
         <file>disc24.png</file>
         <file>delivery13.png</file>
         <file>craner.png</file>
@@ -57,5 +57,15 @@
         <file>ic_local_offer_24px.svg</file>
         <file>ic_local_gas_station_48px.svg</file>
         <file>ic_local_gas_station_24px.svg</file>
+        <file>cogwheel.png</file>
+        <file>tool-1.png</file>
+        <file>cut.png</file>
+        <file>technology.png</file>
+        <file>transport.png</file>
+        <file>motor-1.png</file>
+        <file>tool-2.png</file>
+        <file alias="bend">tool.png</file>
+        <file>motor.png</file>
+        <file alias="wheelPressure">inflateWheel.png</file>
     </qresource>
 </RCC>

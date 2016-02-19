@@ -37,7 +37,12 @@ SOURCES += main.cpp\
     dlgupdatekms.cpp \
     dlgoildetails.cpp \
     entities/VehicleEvents/oilchange.cpp \
-    dlgnewoilchange.cpp
+    dlgnewoilchange.cpp \
+    vehicleeventitemdelegate.cpp \
+    qtaplistwidget.cpp \
+    vehicleeventlistwidget.cpp \
+    oilchangecontroller.cpp \
+    vehicleeventcontroller.cpp
 
 HEADERS  += mainwindow.h \
     httprequestworker.h\
@@ -61,7 +66,12 @@ HEADERS  += mainwindow.h \
     dlgupdatekms.h \
     dlgoildetails.h \
     entities/VehicleEvents/oilchange.h \
-    dlgnewoilchange.h
+    dlgnewoilchange.h \
+    vehicleeventitemdelegate.h \
+    qtaplistwidget.h \
+    vehicleeventlistwidget.h \
+    oilchangecontroller.h \
+    vehicleeventcontroller.h
 
 
 FORMS    += mainwindow.ui \
@@ -79,4 +89,16 @@ MOBILITY =
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    model.qmodel \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 

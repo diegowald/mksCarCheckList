@@ -30,3 +30,4 @@ Cambio de aceite, filtro de aceite y filtro de aire, cada 10000 kms o 1 año.
 Cambio de filtro de combustuble, cada 30000 kms
 Alineacion y balanceo, cada 10000 km
 VTV, cada 1 año
+Calibrar las ruedas, cada 1 mes

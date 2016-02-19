@@ -5,6 +5,8 @@
 #include "mongoclientapi.h"
 #include "globalcontainer.h"
 #include "entities/vehicle.h"
+#include <QListWidgetItem>
+#include "oilchangecontroller.h"
 
 namespace Ui {
 class WdgtVehicle;
@@ -17,6 +19,7 @@ class WdgtVehicle : public QWidget
 public:
     explicit WdgtVehicle(GlobalContainerPtr container, VehiclePtr vehicle, QWidget *parent = 0);
     ~WdgtVehicle();
+
 
 private slots:
     void on_toolButton_clicked();
@@ -33,6 +36,15 @@ private:
     VehiclePtr _vehicle;
     MongoClientAPIPtr _api;
     GlobalContainerPtr _container;
+
+    //bool _handleGasCharge;
+    OilChangeController* _oilChangeCtrller;
+    //bool _handleSparkChange;
+    //bool _handleBendChange;
+    //bool _handleGasFilter;
+    //bool _handleWheelAlign;
+    //bool _handleWheelPressure;
+
 };
 
 #endif // WDGTVEHICLE_H

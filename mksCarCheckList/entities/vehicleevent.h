@@ -8,7 +8,13 @@
 enum class VehicleEventType
 {
     CountKms,
-    ChangeOil
+    GasCharge,
+    ChangeOil,
+    SparkChange,
+    BendChange,
+    GasFilter,
+    AlignWheels,
+    WheelPressure
 };
 
 class VehicleEvent : public JsonAble
@@ -30,6 +36,7 @@ public:
     void setDescription(const QString &value);
     void setEventType(VehicleEventType value);
 
+    QString resourceName() const;
 signals:
 
 public slots:
@@ -40,6 +47,7 @@ private:
     QString _name;
     QString _description;
     VehicleEventType _evtType;
+    QString _resourceName;
 
     // JsonAble interface
 protected:

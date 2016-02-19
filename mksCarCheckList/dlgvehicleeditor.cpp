@@ -24,6 +24,14 @@ DlgVehicleEditor::DlgVehicleEditor(VehiclePtr vehicle, QWidget *parent) :
     ui->lblSpinner->setStyleSheet(s);
     ui->lblSpinner->setVisible(false);
 
+    ui->chekGas->setChecked(vehicle->handleGasCharge());
+    ui->chkBend->setChecked(vehicle->handleBendChange());
+    ui->chkGasFilter->setChecked(vehicle->handleGasFilter());
+    ui->chkOil->setChecked(vehicle->handleOilChange());
+    ui->chkSparks->setChecked(vehicle->handleSparkChange());
+    ui->chkWheelAlign->setChecked(vehicle->handleWheelAlign());
+    ui->chkWheelPressure->setChecked(vehicle->handleWheelPressure());
+
 }
 
 DlgVehicleEditor::~DlgVehicleEditor()
@@ -38,5 +46,14 @@ void DlgVehicleEditor::on_buttonBox_accepted()
     _vehicle->setModel(ui->txtModel->text());
     _vehicle->setPlate(ui->txtPlate->text());
     _vehicle->setYear(ui->spinYear->value());
+
+    _vehicle->setHandleGasCharge(ui->chekGas->isChecked());
+    _vehicle->setHandleBendChange(ui->chkBend->isChecked());
+    _vehicle->setHandleGasFilter(ui->chkGasFilter->isChecked());
+    _vehicle->setHandleOilChange(ui->chkOil->isChecked());
+    _vehicle->setHandleSparkChange(ui->chkSparks->isChecked());
+    _vehicle->setHandleWheelAlign(ui->chkWheelAlign->isChecked());
+    _vehicle->setHandleWheelPressure(ui->chkWheelPressure->isChecked());
+
     close();
 }

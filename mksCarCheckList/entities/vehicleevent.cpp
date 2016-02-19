@@ -82,3 +82,39 @@ void VehicleEvent::setEventType(VehicleEventType value)
 {
     _evtType = value;
 }
+
+
+QString VehicleEvent::resourceName() const
+{
+    QString resource = "";
+    switch (_evtType)
+    {
+    case VehicleEventType::CountKms:
+        resource = ":/img/kms";
+        break;
+    case VehicleEventType::ChangeOil:
+        resource = ":/img/oil";
+        break;
+    case VehicleEventType::GasCharge:
+        resource = ":/img/fuel";
+        break;
+    case VehicleEventType::SparkChange:
+        resource = ":/img/spark";
+        break;
+    case VehicleEventType::BendChange:
+        resource = ":/img/bend";
+        break;
+    case VehicleEventType::GasFilter:
+        resource = ":/img/gasFilter";
+        break;
+    case VehicleEventType::AlignWheels:
+        resource = ":/img/wheelAlgin";
+        break;
+    case VehicleEventType::WheelPressure:
+        resource = ":/img/wheelPressure";
+        break;
+    default:
+        break;
+    }
+    return resource;
+}
